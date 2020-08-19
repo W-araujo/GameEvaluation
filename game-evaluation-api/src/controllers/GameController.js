@@ -110,7 +110,7 @@ module.exports = {
                 .first()
 
             if (!game) {
-                return res.status(401).json({ error: 'Jogo inexistente' })
+                return res.status(404).json({ error: 'Jogo inexistente' })
             } else {
 
                 await connection('game')
