@@ -1,0 +1,20 @@
+{
+  "name": "projeto-w",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.21.4",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
+    "sucrase": "^3.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon ./src/server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
