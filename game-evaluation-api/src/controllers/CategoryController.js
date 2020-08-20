@@ -8,11 +8,11 @@ module.exports = {
                 .where({ is_deleted: false })
                 .select('*')
 
-                const [count] = await connection('category')
+            const [count] = await connection('category')
                 .where({ is_deleted: false })
                 .count();
 
-                res.header('X-Total-Count', count['count(*)']);
+            res.header('X-Total-Count', count['count(*)']);
 
             if (list.length === 0) {
                 return res.json({ msg: 'Nenhuma categoria cadastrada no momento :(' })
@@ -30,10 +30,25 @@ module.exports = {
         try {
             const { name } = req.body;
 
-            const [id] = await connection('category').insert({
-                name
-            })
-            return res.json({ id });
+            const upperName = name.toUpperCase();
+
+            const category = await connection('category')
+                .where('name' == upperName)
+                .andWhere({ is_deleted: false })
+                .select('name')
+                .first()
+
+            console.log(category, upperName);
+
+            if (!category) {
+                const [id] = await connection('category').insert({
+                    name: upperName
+                })
+                return res.json({ id });
+
+            } else {
+                return res.json({ error: 'aqui' })
+            }
 
         } catch (error) {
             return res.json(error);
@@ -42,7 +57,6 @@ module.exports = {
     },
 
     async delete(req, res) {
-
         try {
             const { id } = req.params;
 
@@ -59,7 +73,7 @@ module.exports = {
                     .select('name')
                     .update({ is_deleted: true })
 
-                    return res.json({msg: 'Categoria deletada com sucesso'})
+                return res.json({ msg: 'Categoria deletada com sucesso' })
             }
         } catch (error) {
             return res.json(error);
