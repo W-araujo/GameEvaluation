@@ -1,6 +1,6 @@
 # GameEvaluation
 
-<strong> Projeto destinado ao aprendizado da stack js.</strong>
+<h2> Projeto destinado ao aprendizado da stack js.</h2>
 
 <h3> Tecnologias utilizadas</h3>
 <ul>
